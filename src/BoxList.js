@@ -6,24 +6,24 @@ import './BoxList.css';
 const BoxList = () => {
     const [boxes, setBoxes] = useState([]);
 
-    const createBox = ({ width, height, backgroundColor }) => {
-        setBoxes([...boxes, { width, height, backgroundColor }]);
+    const createBox = ({ width, height, backgroundColor, id }) => {
+        setBoxes([...boxes, { width, height, backgroundColor, id }]);
     };
 
-    const deleteBox = (color) => {
-        setBoxes(boxes.filter((box) => box.backgroundColor !== color));
+    const deleteBox = (id) => {
+        setBoxes(boxes.filter((box) => box.id !== id));
     };
 
     return (
         <div className="BoxList">
             <NewBoxForm setBoxData={createBox} />
-            {boxes.map((box, idx) => (
+            {boxes.map((box) => (
                 <Box
-                    key={idx}
+                    key={box.id}
                     backgroundColor={box.backgroundColor}
                     width={box.width}
                     height={box.width}
-                    handleDelete={deleteBox}
+                    handleDelete={() => deleteBox(box.id)}
                 />
             ))}
         </div>

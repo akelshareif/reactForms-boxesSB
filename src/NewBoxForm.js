@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { v4 as uuid4 } from 'uuid';
 import './NewBoxForm.css';
 
 const NewBoxForm = ({ setBoxData }) => {
@@ -19,7 +20,7 @@ const NewBoxForm = ({ setBoxData }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        setBoxData(formData);
+        setBoxData({ ...formData, id: uuid4() });
         setFormData(INITIAL_STATE);
     };
 
